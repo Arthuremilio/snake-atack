@@ -23,7 +23,7 @@ function criarCobrinha (){
     for(i = 0; i < snake.length; i++){
         context.fillStyle = "blue";
         context.fillRect(snake[i].x, snake[i].y, box, box,);
-        let upscore = 10 * snake.length
+        var upscore = 10 * snake.length
         score.innerHTML = `SCORE ${upscore}`
     }
 }
@@ -42,29 +42,15 @@ function update(event){
     if(event.keyCode == 40 && direction != 'up') direction = 'down';
 }
 
-
-var metaChar = false;
-var exampleKey = 38;
-
-document.addEventListener('keyup', keyEvent)
-function keyEvent(event) {
-    if(event.keyCode == 38 && direction != 'down') direction = 'up';   {
-        const btn = document.querySelector("#up")
-        btn.click();
-      console.log("funcionando")
-      metaChar = false;
-    }
-  }
-
-function metaKeyUp (event) {
-  var key = event.keyCode || event.which;
-
-  if (key == exampleKey) {
-    metaChar = false;
-  }
+function controle(event){
+    direction = event.id
 }
 
+
 function iniciarJogo(){    
+    let pontuação = document.querySelector("#score").innerHTML
+    console.log(pontuação)
+    
 
     if(snake[0].x > 13*box && direction == "right") snake[0].x = 0
     if(snake[0].x < 0 && direction == 'left') snake[0].x = 14 * box
@@ -73,7 +59,7 @@ function iniciarJogo(){
     for(i = 1; i < snake.length; i++){
         if(snake[0].x == snake[i].x && snake[0].y == snake[i].y){
             clearInterval(jogo)
-            alert('Game Over :(')
+            window.alert(` Game Over 😣 \n ${pontuação}`)
             location.reload()
             
         }
